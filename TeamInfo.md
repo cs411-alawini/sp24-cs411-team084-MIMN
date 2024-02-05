@@ -19,4 +19,4 @@
 
 |   Info      |        Description     |
 | ----------- | ---------------------- |
-|  Title      |       Relational Database-centric Web Application     |
+|  Title      |       Dream College Navigator     |

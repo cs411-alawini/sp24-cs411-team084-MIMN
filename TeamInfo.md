@@ -20,3 +20,7 @@
 |   Info      |        Description     |
 | ----------- | ---------------------- |
 |  Title      |       Dream CS Graduate School Navigator     |
+
+## Summary
+
+Dream CS Graduate School Navigator is a cutting-edge program designed to optimize the graduate school admission process for prospective Computer Science (CS) students. Our technology leverages a comprehensive database of Computer Science graduate programs to provide customized suggestions based on the applicant's academic background.  

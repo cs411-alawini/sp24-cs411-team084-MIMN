@@ -19,4 +19,4 @@
 
 |   Info      |        Description     |
 | ----------- | ---------------------- |
-|  Title      |       Dream College Navigator     |
+|  Title      |       Dream CS Graduate School Navigator     |

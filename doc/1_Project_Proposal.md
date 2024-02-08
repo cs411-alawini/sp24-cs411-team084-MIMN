@@ -1,76 +1,77 @@
-# Dream College Navigator
+# Dream CS Graduate School Navigator
 
 ## 1. Summary
 
-Dream College Navigator is an innovative program that uses comprehensive data analytics to streamline college admission processes for prospective students. Our technology relies on a comprehensive database of schools to provide personalized college suggestions based on the user's academic background and preferences.
-
-The procedure begins with users providing their requirements, including academic programs, finances, campus life experience, safety norms, and more. ⁤⁤This initial, intensive screening yields a list of universities that meet the user's given interests. ⁤⁤To further refine this list, the platform asks users to contribute more personal information, such as test scores, and extracurricular activities. ⁤⁤Using these facts, the user not only meets the academic requirements for these colleges but also has a good chance of being accepted, combining ideal and practical admission opportunities. ⁤⁤This two-tiered method combines an enormous database of schools with tailored data analysis to guarantee that customers are presented with options that are both desirable and attainable.
+Dream CS Graduate School Navigator is a cutting-edge program designed to optimize the graduate school admission process for prospective Computer Science (CS) students. Our technology leverages a comprehensive database of Computer Science graduate programs to provide customized suggestions based on the applicant's academic background.  
 
 ## 2. Description
 
-⁤The primary issues we address are information overload and analysis paralysis, which frequently accompany the college-choosing process. ⁤⁤Many students and families become confused in a sea of data, unsure how to balance aspects such as program quality, cost, campus culture, and safety with their personal preferences and academic profiles. ⁤⁤Furthermore, the opaque nature of college admissions standards adds to the complexity, making it impossible for applicants to precisely predict their prospects of admittance.
+The field of computer science is highly competitive, with top programs receiving thousands of applications for a limited number of spots. Students often struggle to gauge their competitiveness and find programs that match their qualifications, leading to considerable confusion and stress during the application process.  
 
-⁤Our application streamlines this process by providing a comprehensive yet user-friendly platform where users can enter their requirements and preferences across a variety of essential parameters. ⁤From academic disciplines and financial considerations to campus environment and safety regulations, Dream College Navigator uses a sophisticated algorithm to match user inputs with appropriate institutions from our huge database.
+By leveraging machine learning algorithms to analyze historical admission data, our application provides personalized assessments of a student's chances of admission to various computer science graduate programs. It further matches students with graduate programs that align with their academic profile and preferences, simplifying the search for the right fit.
 
-## 3. Usefulness
+## 3. Creativity
+We are committed to delivering exceptionally accurate admission probability assessments for applicants. To achieve this, we plan to utilize various machine learning techniques, including linear regression, to analyze and interpret statistics from millions of data points. This approach will enable us to refine our predictions and offer users precise insights into their chances of admission to their dream programs.
 
-Dream College Navigator is designed to be a comprehensive tool that simplifies the college search and application process, making it more efficient and tailored to individual needs. Its usefulness stems from its ability to distill vast amounts of data into personalized recommendations, thereby saving users time and providing clarity in a process that can often feel overwhelming.
+## 4. Usefulness
 
-### 3.1 Basic Functions:
-Personalized College Search: Users can input their preferences for major, location, size, campus culture, and more, to receive a list of colleges that match their criteria.
-Admission Probability Calculator: Users can enter their academic information, such as test scores, to get an estimate of their chances of admission at various schools.
+Dream College Navigator is designed to be a comprehensive tool that simplifies the college search and application process, making it more efficient and tailored to individual needs. Its usefulness stems from its ability to distill vast amounts of data into personalized assessments and recommendations, thereby saving users time and providing clarity in a process that can often feel overwhelming.
 
-### 3.2 Complex Features:
-Scenario Simulation Tool: This allows users to explore different "what-if" scenarios, such as changes in test scores or financial situation, to see how these changes could impact their college options.
+### 4.1 Basic Functions:
+- Applicant Standings: Enables applicants to understand their positioning in relation to millions of others by comparing academic profiles.  
+- College Match: Offers a curated list of universities tailored to the academic qualifications of applicants.  
 
-### 3.3 Similar Websites/Applications:
-There are several websites and applications like College Board, Niche, or Naviance that offer college search and information services. However, Dream College Navigator sets itself apart with its Scenario Simulation tool, which provides a dynamic and interactive way for users to understand the impact of different factors on their college application process. Additionally, the integration of a detailed comparison tool and personalized admission probabilities based on user-specific data makes Dream College Navigator a more personalized and user-centric platform.
+### 4.2 Complex Features:
+Admission Chance Simulation Tool: Utilize advanced machine learning techniques to assess students' admission probabilities by comparing their details with millions of applications in our dataset.
 
-## 4. Dataset
+### 4.3 Similar Websites/Applications:
+There are a few websites concerning computer science graduate school application like theGradCafe, College Board etc. However, none of these websites have the capability to offer personalized assessments of applicants' chances. Dream College Navigator distinguishes itself with its innovative Admission Chance Simulation tool, which evaluates the likelihood of applicants being accepted by their desired programs by analyzing millions of historical data points. Additionally, our website compares the academic backgrounds of applicants, including GRE scores and GPA, to provide a clearer understanding of where they stand among all applicants. This feature contributes to the platform's enhanced personalization and user-centric approach, which is not offered by similar websites.
 
-### 4.1 Admission Profile
-- Name: Admission profile
-- Source: Integrated Postsecondary Education Data System (IPEDS)
-- URL: https://drive.google.com/file/d/1dwWKelweHw8Ixy4FTaXZZQxovXRByHl_/view?usp=drive_link
-- Size: 3877 rows
-- Description: This dataset contains various test scores and admit rate for each institution.
+## 5. Dataset
 
-### 4.2 Student Cost
-- Name: Student charges for academic year programs
-- Source: Integrated Postsecondary Education Data System (IPEDS)
-- URL: https://drive.google.com/file/d/1WzVeM-uyh7PPU1RL_K1sWeGKue485SJq/view?usp=drive_link
-- Size: 3877 rows
-- Description: This dataset contains student costs by college and backgrounds.
+### 5.1 Profile of Applicants
+- Source: Kaggle and theGradCafe
+- URL: https://www.kaggle.com/datasets/karun95/gradcafe-computer-science-results
+- Format: csv
+- Size: 3.7m rows, 14 columns
+- Description: This is a comprehensive collection of applicants who applied to a computer science Graduate program as surveyed by theGradCafe. It includes the background of each applicant, including GRE scores and GPAs with the outcomes of their applications.
 
+### 5.2 Ranking of Computer Science Universities
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/1vyGdFx0x0RjYt9LPUVPW9MMC70aFism4/view?usp=drive_link
+- Format: csv
+- Size: 103 rows, 4 columns
+- Description: This dataset top 100 Universities in their computer science programs.
 
-### 4.3 College Ranking
-- Name: US News University Ranking
-- URL: https://andyreiter.com/datasets/
-- Format: xls
-- Size: 296 rows, 28 cols
-- Description: This table contains US News college ranking
+## 6. Functionality
 
-## 5. Functionality
-
-### 5.1 User Account Management
+### 6.1.User Account Management
 Function: Allows users to create, update, delete and manage their account information.
+
 User Interaction: Users can register for a new account by filling in basic information such as email address, password, etc. After registration, users can log in, edit their profile, change their password, or delete their account if necessary.
 
-### 5.2 Personalized College Search
-Functionality: User inputs preferences (location, tuition range, safety level, satisfaction, etc.) which return a list of matching universities.
-User Interaction: User preferences are collected through a form that includes elements such as drop-down menus, sliders, etc. so that the user can define search parameters. The search results are presented in a list that the user can click on for more information.
+### 6.2 Admission Chance Evaluation
+Function: Evaluates and estimates the chances of acceptance based on the user's input of academic background information (e.g., GPA, GRE, TOEFL scores, etc.) and target colleges.
 
-### 5.3 Scenario Simulation Tool
-Function: Allows users to explore different "what-if" scenarios, such as changes in GPA or financial situation, to see how these changes could impact their college options.
-User Interaction: The user modifies a set of parameters (e.g., assuming an increase in GPA, a change in family finances, etc.), and the system displays an updated list of college matches and admission probabilities.
+User Interaction: User's academic backgrounds are collected through a form that includes elements such as drop-down menus, sliders, etc. so that the user can define search parameters for more accurate results. The analysis displays the users' admission probability as clear percentage.
 
-### 5.4 Data Management and Analysis
+### 6.3 Applicant Background Comparison
+Function: Shows how the applicant compares to other applicants in terms of GPA, GRE, TOEFL and other metrics.
+
+User Interaction: Users can see where they stand relative to other applicants on these metrics, possibly through dynamic charts or ranked lists.
+
+### 6.4 Matching Colleges CS Rankings
+Function: Provides colleges that match the applicant's background and ranks them by CSRanking.
+
+User Interaction: Users can view the list of colleges according to the ranking of computer science majors and click on a college to get more information.
+
+### 6.5 Data Management and Analysis
 Functions: Maintain university database, update school information, admission criteria, etc.
 
-## 6. A low-fidelity UI mockup
-![](./UI.jpg)
+## 7. A low-fidelity UI mockup
+![](./images/1_dashboard_ui.jpg)
 
-## 7. Work Distribution
+## 8. Work Distribution
 
 Qi Cui: Front-end and UI Design
 Focus on user interface design and implementation, including front-end development of user account management interface, personalized college search interface, admission probability calculator, and scenario simulation tools.

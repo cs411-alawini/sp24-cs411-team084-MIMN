@@ -69,7 +69,7 @@ User Interaction: Users can view the list of colleges according to the ranking o
 Functions: Maintain university database, update school information, admission criteria, etc.
 
 ## 7. A low-fidelity UI mockup
-![](./images/1_dashboard_ui.jpg)
+!["dashboard_ui"](./images/1_dashboard_ui.jpg)
 
 ## 8. Work Distribution
 

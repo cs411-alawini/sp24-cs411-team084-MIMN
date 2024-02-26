@@ -57,7 +57,7 @@
 ## Logical Design
 **1. Users**
 ```
-Users( 
+Users ( 
     Column1: user_id INT [PK],  
     Column2: username VARCHAR(100),  
     Column3: email VARCHAR(100),  
@@ -73,7 +73,7 @@ Users(
 
 **2. Interested university**
 ```
-Interested(
+Interested (
     Column1: user_id INT [PK] [FK to Users.user_id],  
     Column2: interested_university INT [PK] [FK to University.university_id]
 )  
@@ -81,7 +81,7 @@ Interested(
 
 **3. Area**  
 ```
-Area(
+Area (
     Column1: area_id INT [PK],  
     Column2: name VARCHAR(100)
 )
@@ -89,7 +89,7 @@ Area(
 
 **4. Ranking**
 ```
-Ranking(
+Ranking (
     Column1: university_id INT [PK][FK to University.university_id],
     Column2: area_id INT [PK][FK to Area.area_id],
     Column3: ranking INT
@@ -97,7 +97,7 @@ Ranking(
 ```
 **5. University**
 ```
-University(
+University (
     Column1: university_id INT [PK],
     Column2: name VARCHAR(100)
 )  

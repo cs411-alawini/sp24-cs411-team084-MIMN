@@ -54,6 +54,81 @@
 - **One to Many:** Each area is expected to have at least one ranking record, representing universities standings within that particular field of study. Conversely, each ranking is uniquely linked to a single area.
 - **Assumption:** This comes from the structure of our dataset. Each area is represented through various ranking records, and each of these records is dedicated to a particular area.
 
+## Normalization
+
+### 1. Relations based on ERD
+```
+    User(user_id, username, email, password, gre_q, gre_v, gre_awa, gpa, status, dream_area)
+    University(university_id, name)
+    Area(area_id, name)
+    Application(application_id, degree, term, decision, gre_q, gre_v, gre_awa, gpa, status, university, date)
+    Ranking(university_id, area_id, ranking)
+```
+
+### 2. 3NF
+**User:** Contains basic user information and login information.  
+```
+user_id -> username, email, password, status
+```
+
+**UserGpa:** Stores the user's GPA and is associated with the User table via user_id.  
+```
+user_id -> gpa
+```
+
+**UserGre:** Contains the user's GRE test scores, which are associated with the User table via user_id.  
+```
+user_id -> gre_q, gre_v, gre_awa
+```
+
+**University:** Contains basic information about the university.  
+```
+university_id -> name
+```
+
+**Area:** Contains information on areas of study.  
+```
+area_id -> name
+```
+
+**UserDreamUniversities:** Indicates the relationship between a user and dream university, with each user being able to select a dream university.  
+```
+user_id -> university_id
+university_id -> user_id
+```
+
+**Application:** Stores the user's application information, associated with the User table via user_id and with the University table via university_id.  
+```
+application_id, user_id, university_id -> degree, term, decision, date
+```
+
+**ApplicationScores:** Stores information about the grades associated with an application and is associated with the Application table through application_id.  
+```
+application_id -> gre_q, gre_v, gre_awa
+```
+
+**Ranking:** Contains university rankings in different research areas, associated with the University table by university_id and with the Area table by area_id.  
+```
+university_id, area_id -> ranking
+```
+
+**UserInterest:** Indicates the user's interest in different research areas and is a join table of one-to-many relationships.  
+```
+user_id -> area_id
+area_id -> user_id
+```
+
+### 3. Why 3NF Not BCNF
+- 3NF is more flexible compared to BCNF. BCNF can lead to loss of functional dependencies.
+- 3NF is usually easier to understand and use because it is not as strict as BCNF. 
+- 3NF provides a good balance between normalization and functionality. BCNF may require additional tables and more complex connection operations.
+- BCNF can lead to excessive table decomposition, which can negatively impact database performance.
+- 3NF helps create a flexible data model that can more easily adapt to future changes, such as adding new attributes or new data types.
+
+
+
+
+
 ## Logical Design
 **1. Users**
 ```

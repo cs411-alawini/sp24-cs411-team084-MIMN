@@ -31,8 +31,8 @@
 
 ## Relationships
 ### 1. User - University: like
-- **One to Many:** We specify that each user is required to pick a single "dream university" they favor, and each university can be favored by a varying number of students, from none to many.
-- **Assumption:** The relationship is based on a specific constraint of the website. When users create accounts, they will be prompted to identify just one "dream university". Consequently, tt is possible for certain universities to be not favored by any user.
+- **Many to Many:** Each user is required to pick an array of "dream universitys" they favor optionally, and each university can be favored by a varying number of students, from none to many.
+- **Assumption:** The relationship is based on a specific constraint of the website. When users create accounts, they will be prompted to identify their "dream universities" voluntarily. Consequently, tt is possible for certain universities to be not favored by any user.
 
 ### 2. Application - Unviersity: apply
 - **One to Many:** Each application is restricted to applying to one university, while each university may receive none to many applications.
@@ -43,8 +43,8 @@
 - **Assumption:** We encourage users to submit application results to contribute to the community voluntarily, allowing for submission of multiple results or opting not to participate. Meanwhile, each application must be traceable to a specific applicant.
 
 ### 4. User - Area: interested
-- **Many to Many:** A user may express interest in an array of areas, while each area may attract interest from zero or many students.
-- **Assumption:** This comes from the website constraint. When users create accounts, they will be encouraged to optionally indicate areas of interest for customized matches. It is possible that a certain area might not captivate the interest of any user.
+- **One to Many:** A user may express interest in just one area, while each area may attract interest from zero or many students.
+- **Assumption:** This comes from the website constraint. When users create accounts, they will be prompted to indicate areas of interest for customized matches. It is possible that a certain area might not captivate the interest of any user.
 
 ### 5. University - Ranking: has
 - **One to Many:** Each university may have multiple rankings across various areas of study. However, each ranking record must be associated with one university.

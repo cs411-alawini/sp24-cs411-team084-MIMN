@@ -11,4 +11,4 @@ This is the repository that hosts the development of Dream CS Graduate School Na
 
 ### Stage 0 - 1/20/2024
 - Set up the initial project repository.
-- Added [readme](./README.md) for project overview and [teaminfo](./TeamInfo.md\) for details on the team contact information.
+- Added [readme](./README.md) for project overview and [teaminfo](./TeamInfo.md) for details on the team contact information.

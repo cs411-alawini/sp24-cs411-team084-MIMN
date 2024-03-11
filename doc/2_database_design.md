@@ -27,7 +27,7 @@
 ### 5. Ranking
 **Description:** Represents the relative standing for each university in various areas of study.
 - **Assumption:** Each ranking record is unique, differentiated by a key pair consisting of `university_id` and `area_id`.
-- It is modeled as an entity to allow for relationships with areas and universities, reflecting the variability in university rankings across different specializations.
+- It is modeled as an entity to allow for relationships with areas and universities, reflecting the variability in university rankings across different specializations. It is a weak entity as it relies on the `university` and `area` to define itself.
 
 ## Relationships
 ### 1. User - University: like
@@ -143,7 +143,7 @@ Users (
     Column8: gpa REAL,  
     Column9: status VARCHAR(100),  
     Column10: dream_area INT [FK to Area.area_id]
-) 
+)
 ```
 
 **2. Interested university**
@@ -151,7 +151,7 @@ Users (
 Interested (
     Column1: user_id INT [PK] [FK to Users.user_id],  
     Column2: interested_university INT [PK] [FK to University.university_id]
-)  
+)
 ```
 
 **3. Area**  
@@ -168,15 +168,14 @@ Ranking (
     Column1: university_id INT [PK][FK to University.university_id],
     Column2: area_id INT [PK][FK to Area.area_id],
     Column3: ranking INT
-)  
+)
 ```
 **5. University**
 ```
 University (
     Column1: university_id INT [PK],
     Column2: name VARCHAR(100)
-)  
-
+)
 ```
 
 **6. Application**  
@@ -194,5 +193,5 @@ Application (
     Column10: status VARCHAR(100),  
     Column11: university INT [FK to University.university_id],  
     Column12: date DATE
-)  
+)
 ```

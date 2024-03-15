@@ -41,7 +41,49 @@ There are a few websites concerning computer science graduate school application
 - URL: https://drive.google.com/file/d/1vyGdFx0x0RjYt9LPUVPW9MMC70aFism4/view?usp=drive_link
 - Format: csv
 - Size: 103 rows, 4 columns
-- Description: This dataset top 100 Universities in their computer science programs.
+- Description: This dataset contains top 100 Universities in their computer science programs.
+
+### 3. University Ranking in Artificial Intelligence
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/1CXtvM5_VDp4370bkvf6ARb3YXJPqTvKW/view?usp=drive_link
+- Format: csv
+- Size: 101 rows, 4 columns
+- Description: This dataset contains the ranking for universities in the field of artificial intelligence.
+
+### 4. University Ranking in Computer Theory
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/1PV5Ni3hUruka3QOilSrCE9PpYF2D5rjF/view?usp=drive_link
+- Format: csv
+- Size: 113 rows, 4 columns
+- Description: This dataset contains the ranking for universities in the field of theoretical computer science.
+
+### 5. University Ranking in Systems
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/1MYQPl_mg2xhVQkOvcOd7FzH7Pkd4Z7cW/view?usp=drive_link
+- Format: csv
+- Size: 121 rows, 4 columns
+- Description: This dataset contains the ranking for universities in the field of systems engineering.
+
+### 6. University Ranking in Software Development
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/10t_qXmTqNwJhKZU8ubrqefEnjkBhblyW/view?usp=drive_link
+- Format: csv
+- Size: 112 rows, 4 columns
+- Description: This dataset contains the ranking for universities in the field of software development.
+
+### 7. University Ranking in Computer Security
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/1g6-7RK8rUUUu93TQMjUjWL3QnrzTBxfp/view?usp=drive_link
+- Format: csv
+- Size: 104 rows, 4 columns
+- Description: This dataset contains the ranking for universities in the field of computer security.
+
+### 8. University Ranking in Robotics
+- Source: csranking.org
+- URL: https://drive.google.com/file/d/1z2n8uqNUx3h6-KUUbpW_wazsGJOOk0aW/view?usp=drive_link
+- Format: csv
+- Size: 100 rows, 4 columns
+- Description: This dataset contains the ranking for universities in the field of robotics.
 
 ## Functionality
 

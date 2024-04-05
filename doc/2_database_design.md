@@ -26,8 +26,8 @@
 
 ### 5. Ranking
 **Description:** Represents the relative standing for each university in various areas of study.
-- **Assumption:** Each ranking record is unique, differentiated by a key pair consisting of `university_id` and `area_id`.
-- It is modeled as an entity to allow for relationships with areas and universities, reflecting the variability in university rankings across different specializations. It is a weak entity as it relies on the `university` and `area` to define itself.
+- **Assumption:** Each ranking record is unique, differentiated by an external key pair consisting of `university_id` and `area_id`.
+- It is modeled as a weak entity to allow for relationships with areas and universities, reflecting the variability in university rankings across different specializations. It is a weak entity as it relies on the `university` and `area` to define itself.
 
 ## Relationships
 ### 1. User - University: like
@@ -146,9 +146,9 @@ Users (
 )
 ```
 
-**2. Interested university**
+**2. Like**
 ```
-Interested (
+Like (
     Column1: user_id INT [PK] [FK to Users.user_id],  
     Column2: interested_university INT [PK] [FK to University.university_id]
 )

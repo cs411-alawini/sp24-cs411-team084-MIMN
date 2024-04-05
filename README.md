@@ -4,11 +4,11 @@ This is the repository that hosts the development of Dream CS Graduate School Na
 
 ## Versions
 ### Stage 3
-- Updated the [database design proposal](./doc/2_database_design.md) by fixing the logic in the UML graph.
+- Updated the [UML design](./doc/2_uml_design.md) by fixing the logic in the UML graph.
 - Updated the [project proposal](./doc/1_project_proposal.md) to include more datasets.
 
 ### Stage 2 - 2/26/2024
-- Added [database design proposal](./doc/2_database_design.md), along with UML graph, normalization, and relational schema.
+- Added [UML design](./doc/2_uml_design.md), along with UML graph, normalization, and relational schema.
 
 ### Stage 1 - 2/7/2024
 - Added [project proposal](./doc/1_project_proposal.md), detailing application's objective, key features, datasets, etc.

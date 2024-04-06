@@ -1,6 +1,13 @@
 # Database Design
 
 ## Database Implementation
+
+### 1. Database Connection
+!["database"](./images/3_database.png)
+
+!["tables"](./images/4_table.png)
+
+### 2. DDL Commands
 ```sql
 CREATE DATABASE IF NOT EXISTS COLLEGE_DB;
 USE COLLEGE_DB;
@@ -78,3 +85,30 @@ CREATE TABLE like_university (
     FOREIGN KEY (liked_university) REFERENCES university(university_id)
 );
 ```
+
+### 3. Table Counts
+Each table is populated with locally stored csv files. Some attributes are randomly generated.  
+
+**Application:**
+
+!["database"](./images/5_count_application.png)
+
+**Area:**
+
+!["database"](./images/6_count_area.png)
+
+**Like University:**
+
+!["database"](./images/7_count_like_university.png)
+
+**Ranking:**
+
+!["database"](./images/8_count_ranking.png)
+
+**University:**
+
+!["database"](./images/9_count_university.png)
+
+**User:**
+
+!["database"](./images/10_count_user.png)

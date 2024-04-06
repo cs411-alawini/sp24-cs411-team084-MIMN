@@ -1,5 +1,6 @@
 # Database Design
 
+## Database Implementation
 ```sql
 CREATE DATABASE IF NOT EXISTS COLLEGE_DB;
 USE COLLEGE_DB;

@@ -4,6 +4,7 @@ This is the repository that hosts the development of Dream CS Graduate School Na
 
 ## Versions
 ### Stage 3
+- Added the MySQL database on GCP following the specifications outlined in the [database design document](./doc/3_database_design.md),  populated with initial data.
 - Updated the [UML design](./doc/2_uml_design.md) by fixing the logic in the UML graph.
 - Updated the [project proposal](./doc/1_project_proposal.md) to include more datasets.
 

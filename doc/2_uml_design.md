@@ -1,4 +1,4 @@
-# Database Design
+# UML Design
 
 ## UML Diagram
 !["uml_graph"](./images/2_uml_diagram.png)

@@ -20,7 +20,7 @@
 - It is modeled as an entity to allow for connections between rankings and users, allowing users to specify their interests in multiple areas to obtain tailored matches. Additionally, it supports tracking of university rankings in each area.
 
 ### 4. Application
-- **Description:** Captures the exisiting applications within our dataset, including an applicant's academic background (GPA, GRE, status, etc.), application outcome (decision, date), and the university they applied to.
+- **Description:** Captures the exisiting applications within our dataset, including an applicant's academic background (GPA, GRE, status, etc.), and the application outcome (decision, date).
 - **Assumption:** Every application is considered unique with an exclusive `application_id`.
 - It is modeled as an entity to support relationships with both universities and users, allowing users to post their application records. Moreover, the relationship between university and application contributes to analyzing the application statistics for each university.
 

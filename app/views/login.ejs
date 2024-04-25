@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>insta485</title>
+    </head>
+    <body>
+        <div id="main-container" style="padding-top: 5%;">
+            <form action="/accounts" method="post" enctype="multipart/form-data">
+                <input type="text" name="username" placeholder="username" required/>
+                <input type="password" name="password" placeholder="password" required/>
+                <input type="submit" value="login"/>
+                <input type="hidden" name="operation" value="login"/>
+            </form>
+            <div style="margin-top: 3%;">
+                Don't have an account? <a href="/create/" style="font-weight: 700; color: #161616;">Sign up</a>
+            </div>
+        </div>
+    </body>
+</html>

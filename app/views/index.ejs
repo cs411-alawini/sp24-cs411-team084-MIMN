@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Attendance System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h2>Please mark your attendance below</h2>
+        <form action="mark" method="POST">
+          <div class="form-group">
+            <label for="netid">Net ID</label>
+            <input type="text" class="form-control col-lg-9" id="netid" placeholder="Enter Net ID" name="netid">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <!-- Button to Load Attendance -->
+        <button type="button" class="btn btn-info mt-3" id="loadAttendanceBtn" data-toggle="modal" data-target="#viewAttendanceModal">
+          View Attendance
+        </button>
+        <div id="attendanceBody">
+            <!-- Attendance rows will be inserted here -->
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+$(document).ready(function() {
+  $('#loadAttendanceBtn').click(function() {
+    $.ajax({
+      url: '/api/attendance',
+      method: 'GET',
+      success: function(data) {
+        console.log(data);
+        var htmlContent = '';
+        data.forEach(function(item) {
+          htmlContent += '<p>Name: ' + item.name + '</p>';
+        });
+        $('#attendanceBody').html(htmlContent);
+      },
+      error: function() {
+        alert('Failed to load attendance data.');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

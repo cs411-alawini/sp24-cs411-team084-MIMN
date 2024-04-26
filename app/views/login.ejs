@@ -6,14 +6,14 @@
     </head>
     <body>
         <div id="main-container" style="padding-top: 5%;">
-            <form action="/accounts" method="post" enctype="multipart/form-data">
+            <form action="/accounts/login/" method="post" enctype="multipart/form-data">
                 <input type="text" name="username" placeholder="username" required/>
                 <input type="password" name="password" placeholder="password" required/>
                 <input type="submit" value="login"/>
                 <input type="hidden" name="operation" value="login"/>
             </form>
             <div style="margin-top: 3%;">
-                Don't have an account? <a href="/create/" style="font-weight: 700; color: #161616;">Sign up</a>
+                Don't have an account? <a href="/accounts/create/" style="font-weight: 700; color: #161616;">Sign up</a>
             </div>
         </div>
     </body>

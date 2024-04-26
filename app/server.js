@@ -1,7 +1,11 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var mysql = require('mysql2');
 var path = require('path');
+
+const RedisStore = require('connect-redis')(session);
+const redis = require('redis');
+import { createClient } from 'redis';
+
 var connection = mysql.createConnection({
                 host: '35.232.135.106',
                 user: 'root',
@@ -9,9 +13,19 @@ var connection = mysql.createConnection({
                 database: 'COLLEGE_DB'
 });
 
-// connection.connect;
+connection.connect;
+
+const client = createClient();
+client.on('error', err => console.log('Redis Client Error', err));
+await client.connect();
 
 var app = express();
+
+const redisClient = redis.createClient({
+  host: 'localhost',
+  port: 6379
+});
+
 
 // set up ejs view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -21,25 +35,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '../public'));
 
-const accountRoutes = require('./routes/accounts');
-app.use('/accounts', accountRoutes);
-
 app.get('/', function(req, res) {
   res.render('index', { title: 'Mark Attendance' });
 });
 
-app.get('/api/attendance', function(req, res) {
-  var sql = 'SELECT * FROM university';
-
-  connection.query(sql, function(err, results) {
-    if (err) {
-      console.error('Error fetching data:', err);
-      res.status(500).send({ message: 'Error fetching data', error: err });
-      return;
-    }
-    res.json(results);
-  });
-});
+const accountRoutes = require('./routes/accounts');
+app.use('/accounts', accountRoutes);
 
 app.listen(80, function () {
     console.log('Node app is running on port 80');

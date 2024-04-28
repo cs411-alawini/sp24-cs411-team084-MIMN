@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
+
 const connection = mysql.createConnection({
     host: '35.232.135.106',
     user: 'root',
@@ -14,12 +16,12 @@ router.get('/', (req, res) => {
     res.render('login', { title: 'DreamCS' });
 });
 
-router.post('/', express.urlencoded({ extended: true }), (req, res) => {
+router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
     const { username, password } = req.body;
 
     var sql = 'SELECT * FROM user WHERE username = ?';
 
-    connection.query(sql, [username], function(err, result) {
+    connection.query(sql, [username], async function(err, result) {
       if (err) {
         console.error('Error during database query:', err);
         res.status(500).send({ message: 'Error logging in', error: err });
@@ -29,7 +31,8 @@ router.post('/', express.urlencoded({ extended: true }), (req, res) => {
         res.status(404).send({ message: 'User not found' });
       } else {
         const user = result[0];
-        if (user.password === password) {
+        const match = await bcrypt.compare(password, user.password);
+        if (match) {
             res.send({ message: 'login successful' });
         } else {
             res.status(401).send({ message: 'Incorrect password' });

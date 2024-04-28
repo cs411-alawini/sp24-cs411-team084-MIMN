@@ -2,6 +2,15 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const crypto = require('crypto');
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+    host: '35.232.135.106',
+    user: 'root',
+    password: 'UIUC-cs411-MIMN',
+    database: 'COLLEGE_DB'
+});
+
+connection.connect;
 
 router.get('/', (req, res) => {
     res.render('create', { title: 'Account Create' });

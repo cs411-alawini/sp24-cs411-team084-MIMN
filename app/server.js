@@ -26,7 +26,6 @@ const redisClient = redis.createClient({
   port: 6379
 });
 
-
 // set up ejs view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

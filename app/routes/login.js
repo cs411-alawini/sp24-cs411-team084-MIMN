@@ -38,7 +38,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
         const match = await bcrypt.compare(password, user.password);
         if (match) {
             req.session.user = { id: user.user_id, username: username };
-            res.send({ message: 'login successful' });
+            res.redirect('/index');
         } else {
             res.status(401).send({ message: 'Incorrect password' });
         }

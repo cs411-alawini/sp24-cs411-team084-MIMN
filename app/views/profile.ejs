@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>insta485</title>
+        <style>
+            .label {
+                display: inline-block;
+                width: 100px;
+                text-align: left;
+                margin-right: 10px;
+                margin-bottom: 5px;
+            }
+            
+            .input {
+                display: inline-block;
+                width: 200px;
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main-container" style="padding-top: 5%;">
+            <form action="/accounts/profile/" method="post">
+                <div class="label">Dream University</div> <input type="text" name="university" required class="input"/> <br>
+                <div class="label">Email</div> <input type="text" name="email" required class="input"/> <br>
+                <div class="label">Password</div> <input type="password" name="password" required class="input"/> <br>
+                <div class="label">Dream Area</div> <input type="number" name="area" required class="input"/> <br>
+                <input type="submit" name="signup" value="sign up" style="display: inline-block; margin-left: 115px"/>
+            </form>
+            <div style="margin-top: 3%; display: inline-block;">
+                Already have an account? <a href="/accounts/login/" style="font-weight: 700; color: #161616;">Log in</a>
+            </div>
+        </div>
+    </body>
+</html>

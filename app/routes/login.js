@@ -13,7 +13,11 @@ const connection = mysql.createConnection({
 connection.connect;
 
 router.get('/', (req, res) => {
-    res.render('login', { title: 'DreamCS' });
+    if (req.session.user) {
+      res.redirect('/index');
+    } else {
+      res.render('login', { title: 'DreamCS' });
+    }
 });
 
 router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
@@ -33,6 +37,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
         const user = result[0];
         const match = await bcrypt.compare(password, user.password);
         if (match) {
+            eq.session.user = { id: user.user_id, username: username };
             res.send({ message: 'login successful' });
         } else {
             res.status(401).send({ message: 'Incorrect password' });

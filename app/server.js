@@ -46,11 +46,12 @@ const accountRoutes = require('./routes/accounts');
 app.use('/accounts', accountRoutes);
 
 app.get('/', function(req, res) {
-  if (req.session.user) {
-    res.render('index', { title: 'Index', user: req.session.user });
-  } else {
-    res.redirect('/accounts/login');
-  }
+  // if (req.session.user) {
+  //   res.render('index', { title: 'Index', user: req.session.user });
+  // } else {
+  //   res.redirect('/accounts/login');
+  // }
+  res.render('user', { title: 'Index', user: req.session.user });
 });
 
 app.get('/index', function(req, res) {

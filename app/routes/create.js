@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
     database: 'COLLEGE_DB'
 });
 
-connection.connect;
+// connection.connect;
 
 router.get('/', (req, res) => {
   if (req.session.user) {

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Account</title>
+  <!-- Include your CSS and other head elements here -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="account-container">
+    <h1>Account Information</h1>
+    <div id="user-info">
+      <!-- Assuming userInfo is the object containing user information -->
+      <p id="display-username">Username: <%= userInfo.username %></p>
+      <button onclick="showUpdateForm('username')">Update User Name</button>
+
+      <p id="display-email">Email: <%= userInfo.email %></p>
+      <button onclick="showUpdateForm('email')">Update Email</button>
+
+      <p id="display-gre_q">GRE Quantitative: <%= userInfo.gre_q %></p>
+      <button onclick="showUpdateForm('gre_q')">Update GRE Q</button>
+
+      <p id="display-gre_v">GRE Verbal: <%= userInfo.gre_v %></p>
+      <button onclick="showUpdateForm('gre_v')">Update GRE V</button>
+
+      <p id="display-gre_awa">GRE Writing: <%= userInfo.gre_awa %></p>
+      <button onclick="showUpdateForm('gre_awa')">Update GRE AWA</button>
+
+      <p id="display-gpa">GPA: <%= userInfo.gpa %></p>
+      <button onclick="showUpdateForm('gpa')">Update GPA</button>
+
+      <p id="display-status">Status: <%= userInfo.status %></p>
+      <button onclick="showUpdateForm('status')">Update status</button>
+
+      <p id="display-dream_area">Dream Area: <%= userInfo.dream_area %></p>
+      <button onclick="showUpdateForm('dream_area')">Update dream_area</button>
+
+
+      <div id="add-user-container">
+        <h2>POST!</h2>
+        <form id="add-user-form">
+          <input type="text" name="user_id" placeholder="User ID" required>
+          <input type="text" name="username" placeholder="Username" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <input type="number" name="gre_q" placeholder="GRE Quantitative" required>
+          <input type="number" name="gre_v" placeholder="GRE Verbal" required>
+          <input type="number" name="gre_awa" placeholder="GRE Writing" required>
+          <input type="number" step="0.01" name="gpa" placeholder="GPA" required>
+          <input type="text" name="status" placeholder="Status" required>
+          <input type="text" name="dream_area" placeholder="Dream Area" required>
+          <button type="submit">Add User</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show update form for a specific field
+    function showUpdateForm(field) {
+      // Hide all forms
+      $('.update-form').hide();
+      // Show the specific form for the field
+      $('#update-' + field + '-form').show();
+    }
+
+    // AJAX form submission handler
+    $(document).on('submit', '.update-form', function(e) {
+      e.preventDefault();
+      const form = $(this);
+      const url = form.attr('action');
+
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: form.serialize(),
+        dataType: 'json',
+        success: function(response) {
+          alert('Update successful.');
+          // Update the displayed information without refreshing the page
+          $('#display-' + form.data('field')).text(response.userInfo[form.data('field')]);
+          form.hide(); // Hide the form after successful update
+        },
+        error: function(xhr, status, error) {
+          alert('Error: ' + xhr.responseJSON.message);
+        }
+      });
+    });
+
+
+      // Handling the new user form submission via AJAX
+  $('#add-user-form').on('submit', function(e) {
+    e.preventDefault();
+    const formData = $(this).serialize();
+    $.ajax({
+      type: 'POST',
+      url: '/new_post', // This is the route we will create in Express
+      data: formData,
+      success: function(response) {
+        alert('POST successfully');
+      },
+      error: function(xhr, status, error) {
+        alert('Error adding user: ' + xhr.responseJSON.message);
+      }
+    });
+  });
+  </script>
+</body>
+</html>

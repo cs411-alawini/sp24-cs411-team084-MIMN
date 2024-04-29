@@ -23,7 +23,7 @@ var connection = mysql.createConnection({
                 password: 'UIUC-cs411-MIMN',
                 database: 'COLLEGE_DB'
 });
-connection.connect;
+// connection.connect;
 
 var app = express();
 app.use(session({
@@ -44,6 +44,9 @@ app.use(express.static(__dirname + '../public'));
 
 const accountRoutes = require('./routes/accounts');
 app.use('/accounts', accountRoutes);
+
+const userRoutes = require('./routes/users');
+app.use('/account', userRoutes);
 
 app.get('/', function(req, res) {
   if (req.session.user) {

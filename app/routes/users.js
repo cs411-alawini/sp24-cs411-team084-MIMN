@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     database: 'COLLEGE_DB'
 });
 
-// connection.connect;
+connection.connect;
 
 router.get('/', (req, res) => {
   const user_id = '00023e5e59'

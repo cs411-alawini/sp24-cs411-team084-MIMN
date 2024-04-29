@@ -23,7 +23,8 @@ var connection = mysql.createConnection({
                 password: 'UIUC-cs411-MIMN',
                 database: 'COLLEGE_DB'
 });
-// connection.connect;
+
+connection.connect;
 
 var app = express();
 app.use(session({

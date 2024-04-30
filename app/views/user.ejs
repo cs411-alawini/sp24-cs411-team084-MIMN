@@ -94,7 +94,7 @@
     const formData = $(this).serialize();
     $.ajax({
       type: 'POST',
-      url: '/new_post', // This is the route we will create in Express
+      url: '/user/post', // This is the route we will create in Express
       data: formData,
       success: function(response) {
         alert('POST successfully');

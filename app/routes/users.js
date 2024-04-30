@@ -12,7 +12,7 @@ connection.connect;
 
 router.get('/', (req, res) => {
   const user_id = '00023e5e59'
-  var sql = 'SELECT username, email, gre_q, gre_v, gre_awa, gpa, status, dream_area FROM users WHERE user_id = ?';
+  var sql = 'SELECT username, email, gre_q, gre_v, gre_awa, gpa, status, dream_area FROM user WHERE user_id = ?';
   console.log("dasdsas");
   connection.query(sql, [user_id], function(err, result) {
     if (err) {
@@ -41,10 +41,10 @@ function getUserInfoAndRender(user_id, res) {
   });
 }
 
-router.post('/new_post', express.urlencoded({ extended: true }), (req, res) => {
+router.post('/post', express.urlencoded({ extended: true }), (req, res) => {
   const { user_id, username, email, password, gre_q, gre_v, gre_awa, gpa, status, dream_area } = req.body;
 
-  var sql = `INSERT INTO users (user_id, username, email, password, gre_q, gre_v, gre_awa, gpa, status, dream_area)
+  var sql = `INSERT INTO user (user_id, username, email, password, gre_q, gre_v, gre_awa, gpa, status, dream_area)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   connection.query(sql, [user_id, username, email, password, gre_q, gre_v, gre_awa, gpa, status, dream_area], function(err, result) {

@@ -47,7 +47,7 @@ const accountRoutes = require('./routes/accounts');
 app.use('/accounts', accountRoutes);
 
 const userRoutes = require('./routes/users');
-app.use('/account', userRoutes);
+app.use('/user', userRoutes);
 
 app.get('/', function(req, res) {
   if (req.session.user) {

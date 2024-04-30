@@ -40,7 +40,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
 
     sql = "UPDATE user SET gpa = ?, gre_q = ?, gre_v = ?, gre_awa = ?, status = ? WHERE user_id = ?";
 
-    connection.query(sql, [gpa, gre_q, gre_v, gre_awa, status, user_id], function(err, result) {
+    connection.query(sql, [gpa, gre_q, gre_v, gre_awa, status, user_id], function(err, res) {
         if (err) {
             console.error('Error adding new profile:', err);
             res.status(500).send({ message: 'Error adding new profile', error: err });

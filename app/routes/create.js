@@ -66,8 +66,7 @@ function generateUserId(username) {
   const now = Date.now().toString();
   const random = Math.random().toString();
   const hash = crypto.createHash('sha256').update(username + now + random).digest('hex');
-  const number = parseInt(hash.substring(0, 10), 16);
-  return number % 10000000000;
+  return hash.substring(0, 10);
 }
 
 module.exports = router;

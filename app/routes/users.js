@@ -39,7 +39,7 @@ router.post('/post', express.urlencoded({ extended: true }), (req, res) => {
   const { degree, term, gre_q, gre_v, gre_awa, gpa, status, 
     university, decision, date, user_id  } = req.body;
 
-  const applicationId = generateUserId(username);
+  const applicationId = generateUserId(user_id);
 
   var sql = `INSERT INTO application (user_id, application_id, degree, term, decision, gre_q, gre_v, gre_awa, 
     gpa, status, university, decision_date)
@@ -51,7 +51,9 @@ router.post('/post', express.urlencoded({ extended: true }), (req, res) => {
       console.error('Error adding new user:', err);
       res.status(500).send({ message: 'Error adding new user', error: err });
     } else {
-      res.send({ message: 'Post successfully' });
+      res.json({ 
+        message: `Post successfully`,
+      });
     }
   });
 });

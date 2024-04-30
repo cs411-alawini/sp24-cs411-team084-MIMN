@@ -52,7 +52,7 @@ app.use('/accounts', accountRoutes);
 const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
 
-const postRoutes = require('/routes/post');
+const postRoutes = require('./routes/post');
 app.use('/post', postRoutes)
 
 app.get('/', function(req, res) {

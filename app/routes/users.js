@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const crypto = require('crypto');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: '35.232.135.106',

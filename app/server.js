@@ -44,7 +44,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const accountRoutes = require('./routes/accounts');
 app.use('/accounts', accountRoutes);
@@ -61,11 +61,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/index', function(req, res) {
-  if (req.session.user) {
-    res.render('index', { title: 'Index', user: req.session.user });
-  } else {
-    res.redirect('/accounts/login');
-  }
+  res.redirect('/');
 });
 
 app.listen(80, function () {

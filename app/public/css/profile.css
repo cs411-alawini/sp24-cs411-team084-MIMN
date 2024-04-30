@@ -50,3 +50,26 @@ body {
 label {
     color: #666;
 }
+
+.input, input[type=submit] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    margin: 20px auto; 
+    width: fit-content;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}

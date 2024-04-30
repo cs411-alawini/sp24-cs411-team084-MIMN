@@ -14,7 +14,7 @@ connection.connect;
 
 router.get('/', (req, res) => {
   if (req.session.user) {
-    res.redirect('/index');
+    res.redirect('/');
   } else {
     res.render('create', { title: 'Account Create' });
   }
@@ -51,7 +51,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
         if (result.affectedRows === 0) {
           res.status(400).send({ message: 'User creation failed' });
         } else {
-          res.redirect('/accounts/login');
+          res.redirect('/accounts/profile/');
         }
       });
     });

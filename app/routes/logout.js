@@ -6,7 +6,7 @@ router.post('/', async (req, res) => {
         if (err) {
             return res.status(500).send({ message: 'Failed to logout, please try again.' });
         }
-        res.redirect('/accounts/login');
+        res.redirect('/accounts/login/');
     });
 });
 

@@ -73,3 +73,9 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #45a049;
 }
+
+.label {
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}

@@ -41,10 +41,22 @@ router.get('/', (req, res) => {
 });
 
 router.post('/post', express.urlencoded({ extended: true }), (req, res) => {
-  const { degree, term, gre_q, gre_v, gre_awa, gpa, status, 
-    university, decision, date, user_id  } = req.body;
+  let {
+    degree, term, gre_q, gre_v, gre_awa, gpa, status, date, user_id,
+    university, decision
+  } = req.body;
 
-  const applicationId = generateUserId(user_id);
+  // Convert empty strings to null for optional fields
+  degree = degree || null;
+  term = term || null;
+  gre_q = gre_q ? parseInt(gre_q, 10) : null;
+  gre_v = gre_v ? parseInt(gre_v, 10) : null;
+  gre_awa = gre_awa ? parseInt(gre_awa, 10) : null;
+  gpa = gpa ? parseFloat(gpa) : null;
+  status = status || null;
+  date = date || null;
+
+  var applicationId = generateUserId(user_id);
 
   var sql = `INSERT INTO application (user_id, application_id, degree, term, decision, gre_q, gre_v, gre_awa, 
     gpa, status, university, decision_date)

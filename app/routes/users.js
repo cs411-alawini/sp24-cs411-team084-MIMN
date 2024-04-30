@@ -63,7 +63,7 @@ router.post('/update/:field', express.urlencoded({ extended: true }), async (req
   const newValue = req.body[fieldToUpdate];
 
   var sql = `UPDATE user SET ${connection.escapeId(fieldToUpdate)} = ? WHERE user_id = ?`;
-  console.log(fieldToUpdate, user_id, newValue);
+
   connection.query(sql, [newValue, user_id], function(err, result) {
     if (err) {
       res.status(500).send({ message: 'Error updating email', error: err });
@@ -72,6 +72,7 @@ router.post('/update/:field', express.urlencoded({ extended: true }), async (req
         message: `Updated ${fieldToUpdate} successfully`,
         [fieldToUpdate]: newValue
       });
+      getUserInfoAndRender(user_id, res);
     }
   });
 });

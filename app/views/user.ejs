@@ -137,8 +137,6 @@
         data: form.serialize(),
         success: function(response) {
           alert('Update successful.');
-          $('#display-' + form.attr('action').split('/')[2]).text(form.find('input[type="text"]').attr('name') + ': ' + form.find('input[type="text"]').val());
-          form.parent('.update-form').hide();
         },
         error: function(xhr) {
           alert('Error: ' + xhr.responseText);

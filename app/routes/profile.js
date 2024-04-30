@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     }
 });
 
-router.post('/accounts/info/', express.urlencoded({ extended: true }), async (req, res) => {
+router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
     const { gpa, gre_v, gre_q, status } = req.body;
     console.log("Received data:", { gpa, gre_v, gre_q, status });
 

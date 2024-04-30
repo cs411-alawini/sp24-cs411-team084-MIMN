@@ -13,7 +13,7 @@
       <p id="display-username">Username: <%= userInfo.username %></p>
       <button onclick="showUpdateForm('username')">Update User Name</button>
       <div id="update-username-form" class="update-form" style="display:none;">
-        <form action="/update/username" method="post">
+        <form action="/user/update/username" method="post">
           <input type="text" name="username" placeholder="New Username" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>"> <!-- Presuming user_id is available -->
           <input type="submit" value="Submit">
@@ -23,7 +23,7 @@
       <p id="display-email">Email: <%= userInfo.email %></p>
       <button onclick="showUpdateForm('email')">Update Email</button>
       <div id="update-email-form" class="update-form" style="display:none;">
-        <form action="/update/email" method="post">
+        <form action="/user/update/email" method="post">
           <input type="text" name="email" placeholder="New Email" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">
@@ -33,7 +33,7 @@
       <p id="display-gre_q">GRE Quantitative: <%= userInfo.gre_q %></p>
       <button onclick="showUpdateForm('gre_q')">Update GRE Quantitative</button>
       <div id="update-gre_q-form" class="update-form" style="display:none;">
-        <form action="/update/gre_q" method="post">
+        <form action="/user/update/gre_q" method="post">
           <input type="text" name="gre_q" placeholder="New GRE Quantitative" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">
@@ -43,7 +43,7 @@
       <p id="display-gre_v">GRE Verbal: <%= userInfo.gre_v %></p>
       <button onclick="showUpdateForm('gre_v')">Update GRE Verbal</button>
       <div id="update-gre_v-form" class="update-form" style="display:none;">
-        <form action="/update/gre_v" method="post">
+        <form action="/user/update/gre_v" method="post">
           <input type="text" name="gre_v" placeholder="New GRE Verbal" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">
@@ -53,7 +53,7 @@
       <p id="display-gre_awa">GRE Writing: <%= userInfo.gre_awa %></p>
       <button onclick="showUpdateForm('gre_awa')">Update GRE Writing</button>
       <div id="update-gre_awa-form" class="update-form" style="display:none;">
-        <form action="/update/gre_awa" method="post">
+        <form action="/user/update/gre_awa" method="post">
           <input type="text" name="gre_awa" placeholder="New GRE Writing" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">
@@ -63,7 +63,7 @@
       <p id="display-gpa">GPA: <%= userInfo.gpa %></p>
       <button onclick="showUpdateForm('gpa')">Update GPA</button>
       <div id="update-gpa-form" class="update-form" style="display:none;">
-        <form action="/update/gpa" method="post">
+        <form action="/user/update/gpa" method="post">
           <input type="text" name="gpa" placeholder="New GPA" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">
@@ -73,7 +73,7 @@
       <p id="display-status">Status: <%= userInfo.status %></p>
       <button onclick="showUpdateForm('status')">Update Status</button>
       <div id="update-status-form" class="update-form" style="display:none;">
-        <form action="/update/status" method="post">
+        <form action="/user/update/status" method="post">
           <input type="text" name="status" placeholder="New Status" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">
@@ -83,7 +83,7 @@
       <p id="display-dream_area">Dream Area: <%= userInfo.dream_area %></p>
       <button onclick="showUpdateForm('dream_area')">Update Dream Area</button>
       <div id="update-dream_area-form" class="update-form" style="display:none;">
-        <form action="/update/dream_area" method="post">
+        <form action="/user/update/dream_area" method="post">
           <input type="text" name="dream_area" placeholder="New Dream Area" required>
           <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
           <input type="submit" value="Submit">

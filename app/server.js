@@ -52,6 +52,9 @@ app.use('/accounts', accountRoutes);
 const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
 
+const postRoutes = require('/routes/post');
+app.use('/post', postRoutes)
+
 app.get('/', function(req, res) {
   if (req.session.user) {
     res.render('index', { title: 'Index', user: req.session.user });

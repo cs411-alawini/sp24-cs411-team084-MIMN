@@ -44,7 +44,7 @@ router.post('/post', express.urlencoded({ extended: true }), (req, res) => {
 
   var sql = `INSERT INTO application (user_id, application_id, degree, term, decision, gre_q, gre_v, gre_awa, 
     gpa, status, university, decision_date)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   connection.query(sql, [user_id, applicationId, degree, term, decision, 
     gre_q, gre_v, gre_awa, gpa, status, university, date], function(err, result) {

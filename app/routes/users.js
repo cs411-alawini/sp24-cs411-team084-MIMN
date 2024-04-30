@@ -63,7 +63,7 @@ router.post('/update/:field', express.urlencoded({ extended: true }), async (req
   const { user_id } = req.body;
   const newValue = req.body[fieldToUpdate];
 
-  var sql = 'UPDATE user SET ${connection.escapeId(fieldToUpdate)} = ? WHERE user_id = ?';
+  var sql = `UPDATE user SET ${connection.escapeId(fieldToUpdate)} = ? WHERE user_id = ?`;
 
   connection.query(sql, [fieldToUpdate, newValue, user_id], function(err, result) {
     if (err) {

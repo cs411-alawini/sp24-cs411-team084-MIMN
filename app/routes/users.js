@@ -12,8 +12,7 @@ connection.connect;
 
 router.get('/', (req, res) => {
   const user_id = '00023e5e59'
-  var sql = 'SELECT username, email, gre_q, gre_v, gre_awa, gpa, status, dream_area FROM user WHERE user_id = ?';
-  console.log("dasdsas");
+  var sql = 'SELECT user_id, username, email, gre_q, gre_v, gre_awa, gpa, status, dream_area FROM user WHERE user_id = ?';
   connection.query(sql, [user_id], function(err, result) {
     if (err) {
       console.error('Error during database query:', err);
@@ -64,7 +63,7 @@ router.post('/update/:field', express.urlencoded({ extended: true }), async (req
   const newValue = req.body[fieldToUpdate];
 
   var sql = `UPDATE user SET ${connection.escapeId(fieldToUpdate)} = ? WHERE user_id = ?`;
-
+  console.log(fieldToUpdate, user_id, newValue);
   connection.query(sql, [newValue, user_id], function(err, result) {
     if (err) {
       res.status(500).send({ message: 'Error updating email', error: err });

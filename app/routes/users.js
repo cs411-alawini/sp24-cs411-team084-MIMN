@@ -20,20 +20,24 @@ function generateUserId(username) {
 }
 
 router.get('/', (req, res) => {
-  const user_id = '00023e5e59'
-  var sql = 'SELECT user_id, username, email, gre_q, gre_v, gre_awa, gpa, status, dream_area FROM user WHERE user_id = ?';
-  connection.query(sql, [user_id], function(err, result) {
-    if (err) {
-      console.error('Error during database query:', err);
-      res.status(500).send({ message: 'Error fetching user info', error: err });
-      return;
-    }
-    if(result.length === 0) {
-      res.status(404).send({ message: 'User not found' });
-    } else {
-      res.render('user', { userInfo: result[0] });
-    }
-  });
+  if (req.session.user) {
+    const user_id = req.session.user.id;
+    var sql = 'SELECT user_id, username, email, gre_q, gre_v, gre_awa, gpa, status, dream_area FROM user WHERE user_id = ?';
+    connection.query(sql, [user_id], function(err, result) {
+      if (err) {
+        console.error('Error during database query:', err);
+        res.status(500).send({ message: 'Error fetching user info', error: err });
+        return;
+      }
+      if(result.length === 0) {
+        res.status(404).send({ message: 'User not found' });
+      } else {
+        res.render('user', { userInfo: result[0] });
+      }
+    });
+  } else {
+    res.redirect('/index');
+  }
 });
 
 router.post('/post', express.urlencoded({ extended: true }), (req, res) => {

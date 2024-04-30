@@ -126,24 +126,25 @@
       $('#update-' + field + '-form').css('display', 'block');
     }
 
-  $(document).ready(function() {
-    $('.update-form form').on('submit', function(e) {
-      e.preventDefault();
+    $(document).ready(function() {
+      $('.update-form form').on('submit', function(e) {
+        e.preventDefault();
 
-      var form = $(this);
-      $.ajax({
-        type: 'POST',
-        url: form.attr('action'),
-        data: form.serialize(),
-        success: function(response) {
-          alert('Update successful.');
-        },
-        error: function(xhr) {
-          alert('Error: ' + xhr.responseText);
-        }
+        var form = $(this);
+        $.ajax({
+          type: 'POST',
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function(response) {
+            alert(response.message);
+            location.reload();
+          },
+          error: function(xhr) {
+            alert('Error: ' + xhr.responseText);
+          }
+        });
       });
     });
-  });
 
 
       // Handling the new user form submission via AJAX

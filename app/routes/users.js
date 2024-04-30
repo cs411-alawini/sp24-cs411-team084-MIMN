@@ -70,9 +70,7 @@ router.post('/update/:field', express.urlencoded({ extended: true }), async (req
     } else {
       res.json({ 
         message: `Updated ${fieldToUpdate} successfully`,
-        [fieldToUpdate]: newValue
       });
-      getUserInfoAndRender(user_id, res);
     }
   });
 });

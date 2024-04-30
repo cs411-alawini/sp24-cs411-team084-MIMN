@@ -51,6 +51,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
         if (result.affectedRows === 0) {
           res.status(400).send({ message: 'User creation failed' });
         } else {
+          req.session.user = { id: id, username: username };
           res.redirect('/accounts/profile/');
         }
       });

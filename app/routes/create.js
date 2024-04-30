@@ -22,7 +22,6 @@ router.get('/', (req, res) => {
 
 router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
   const { username, email, password, area } = req.body;
-  console.log("Hashing password for:", username, "with password:", password);
 
   // check if user exists
   const checkIfExists = 'SELECT * FROM user WHERE username = ?';

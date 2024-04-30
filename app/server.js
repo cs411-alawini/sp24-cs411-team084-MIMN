@@ -53,7 +53,7 @@ const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
 
 const postRoutes = require('./routes/post');
-app.use('/post', postRoutes)
+app.use('/post', postRoutes);
 
 app.get('/', function(req, res) {
   if (req.session.user) {

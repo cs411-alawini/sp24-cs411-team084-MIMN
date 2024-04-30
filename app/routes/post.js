@@ -51,3 +51,5 @@ router.post('/submit', express.urlencoded({ extended: true }), (req, res) => {
     }
   });
 });
+
+module.exports = router;

@@ -58,108 +58,21 @@ router.post('/post', express.urlencoded({ extended: true }), (req, res) => {
 });
 
 // Update request to update user's email
-router.post('/update_email', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, email } = req.body;
+router.post('/update/:field', express.urlencoded({ extended: true }), async (req, res) => {
+  const fieldToUpdate = req.params.field;
+  const { user_id } = req.body;
+  const newValue = req.body[fieldToUpdate];
 
-  var sql = 'UPDATE user SET email = ? WHERE user_id = ?';
+  var sql = 'UPDATE user SET ${connection.escapeId(fieldToUpdate)} = ? WHERE user_id = ?';
 
-  connection.query(sql, [email, user_id], function(err, result) {
+  connection.query(sql, [fieldToUpdate, newValue, user_id], function(err, result) {
     if (err) {
       res.status(500).send({ message: 'Error updating email', error: err });
     } else {
-      getUserInfoAndRender(user_id, res);
-    }
-  });
-});
-
-
-// Update request to update user's GRE quantitative score
-router.post('/update_gre_q', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, gre_q } = req.body;
-
-  var sql = 'UPDATE user SET gre_q = ? WHERE user_id = ?';
-
-  connection.query(sql, [gre_q, user_id], function(err, result) {
-    if (err) {
-      res.status(500).send({ message: 'Error updating GRE quantitative score', error: err });
-    } else {
-      getUserInfoAndRender(user_id, res);
-    }
-  });
-});
-
-
-// update request to update user's GRE verbal score
-router.post('/update_gre_v', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, gre_v } = req.body;
-
-  var sql = 'UPDATE user SET gre_v = ? WHERE user_id = ?';
-
-  connection.query(sql, [gre_v, user_id], function(err, result) {
-    if (err) {
-      res.status(500).send({ message: 'Error updating GRE verbal score', error: err });
-    } else {
-      getUserInfoAndRender(user_id, res);
-    }
-  });
-});
-
-// Update request to update user's GRE gre_awa score
-router.post('/update_gre_awa', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, gre_awa } = req.body;
-
-  var sql = 'UPDATE user SET gre_awa = ? WHERE user_id = ?';
-
-  connection.query(sql, [gre_awa, user_id], function(err, result) {
-    if (err) {
-      res.status(500).send({ message: 'Error updating GRE awa score', error: err });
-    } else {
-      getUserInfoAndRender(user_id, res);
-    }
-  });
-});
-
-// Update request to update user's GPA score
-router.post('/update_gpa', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, gpa } = req.body;
-
-  var sql = 'UPDATE user SET gpa = ? WHERE user_id = ?';
-
-  connection.query(sql, [gpa, user_id], function(err, result) {
-    if (err) {
-      res.status(500).send({ message: 'Error updating GPA', error: err });
-    } else {
-      getUserInfoAndRender(user_id, res);
-    }
-  });
-});
-
-// Update request to update user's status score
-router.post('/update_status', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, status } = req.body;
-
-  var sql = 'UPDATE user SET status = ? WHERE user_id = ?';
-
-  connection.query(sql, [status, user_id], function(err, result) {
-    if (err) {
-      res.status(500).send({ message: 'Error updating Status', error: err });
-    } else {
-      getUserInfoAndRender(user_id, res);
-    }
-  });
-});
-
-// Update request to update user's dream_area  score
-router.post('/update_dream_area ', express.urlencoded({ extended: true }), (req, res) => {
-  const { user_id, dream_area  } = req.body;
-
-  var sql = 'UPDATE user SET dream_area  = ? WHERE user_id = ?';
-
-  connection.query(sql, [dream_area , user_id], function(err, result) {
-    if (err) {
-      res.status(500).send({ message: 'Error updating Dream Area', error: err });
-    } else {
-      getUserInfoAndRender(user_id, res);
+      res.json({ 
+        message: `Updated ${fieldToUpdate} successfully`,
+        [fieldToUpdate]: newValue
+      });
     }
   });
 });

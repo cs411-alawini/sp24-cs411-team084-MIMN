@@ -10,31 +10,85 @@
   <div id="account-container">
     <h1>Account Information</h1>
     <div id="user-info">
-      <!-- Assuming userInfo is the object containing user information -->
       <p id="display-username">Username: <%= userInfo.username %></p>
       <button onclick="showUpdateForm('username')">Update User Name</button>
+      <div id="update-username-form" class="update-form" style="display:none;">
+        <form action="/update/username" method="post">
+          <input type="text" name="username" placeholder="New Username" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>"> <!-- Presuming user_id is available -->
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-email">Email: <%= userInfo.email %></p>
       <button onclick="showUpdateForm('email')">Update Email</button>
+      <div id="update-email-form" class="update-form" style="display:none;">
+        <form action="/update/email" method="post">
+          <input type="text" name="email" placeholder="New Email" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-gre_q">GRE Quantitative: <%= userInfo.gre_q %></p>
-      <button onclick="showUpdateForm('gre_q')">Update GRE Q</button>
+      <button onclick="showUpdateForm('gre_q')">Update GRE Quantitative</button>
+      <div id="update-gre_q-form" class="update-form" style="display:none;">
+        <form action="/update/gre_q" method="post">
+          <input type="text" name="gre_q" placeholder="New GRE Quantitative" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-gre_v">GRE Verbal: <%= userInfo.gre_v %></p>
-      <button onclick="showUpdateForm('gre_v')">Update GRE V</button>
+      <button onclick="showUpdateForm('gre_v')">Update GRE Verbal</button>
+      <div id="update-gre_v-form" class="update-form" style="display:none;">
+        <form action="/update/gre_v" method="post">
+          <input type="text" name="gre_v" placeholder="New GRE Verbal" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-gre_awa">GRE Writing: <%= userInfo.gre_awa %></p>
-      <button onclick="showUpdateForm('gre_awa')">Update GRE AWA</button>
+      <button onclick="showUpdateForm('gre_awa')">Update GRE Writing</button>
+      <div id="update-gre_awa-form" class="update-form" style="display:none;">
+        <form action="/update/gre_awa" method="post">
+          <input type="text" name="gre_awa" placeholder="New GRE Writing" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-gpa">GPA: <%= userInfo.gpa %></p>
       <button onclick="showUpdateForm('gpa')">Update GPA</button>
+      <div id="update-gpa-form" class="update-form" style="display:none;">
+        <form action="/update/gpa" method="post">
+          <input type="text" name="gpa" placeholder="New GPA" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-status">Status: <%= userInfo.status %></p>
-      <button onclick="showUpdateForm('status')">Update status</button>
+      <button onclick="showUpdateForm('status')">Update Status</button>
+      <div id="update-status-form" class="update-form" style="display:none;">
+        <form action="/update/status" method="post">
+          <input type="text" name="status" placeholder="New Status" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <p id="display-dream_area">Dream Area: <%= userInfo.dream_area %></p>
-      <button onclick="showUpdateForm('dream_area')">Update dream_area</button>
-
+      <button onclick="showUpdateForm('dream_area')">Update Dream Area</button>
+      <div id="update-dream_area-form" class="update-form" style="display:none;">
+        <form action="/update/dream_area" method="post">
+          <input type="text" name="dream_area" placeholder="New Dream Area" required>
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
       <div id="add-user-container">
         <h2>POST!</h2>
@@ -56,37 +110,42 @@
   </div>
 
   <script>
-    // Show update form for a specific field
+    function displayUserInfo() {
+      for (var key in userInfo) {
+        if (userInfo.hasOwnProperty(key)) {
+          $('#display-' + key).text(capitalizeFirstLetter(key) + ': ' + userInfo[key]);
+        }
+      }
+    }
+
     function showUpdateForm(field) {
       console.log("dasdasd");
       // Hide all forms
       $('.update-form').hide();
       // Show the specific form for the field
-      $('#update-' + field + '-form').show();
+      $('#update-' + field + '-form').css('display', 'block');
     }
 
-    // AJAX form submission handler
-    $(document).on('submit', '.update-form', function(e) {
+  $(document).ready(function() {
+    $('.update-form form').on('submit', function(e) {
       e.preventDefault();
-      const form = $(this);
-      const url = form.attr('action');
 
+      var form = $(this);
       $.ajax({
         type: 'POST',
-        url: url,
+        url: form.attr('action'),
         data: form.serialize(),
-        dataType: 'json',
         success: function(response) {
           alert('Update successful.');
-          // Update the displayed information without refreshing the page
-          $('#display-' + form.data('field')).text(response.userInfo[form.data('field')]);
-          form.hide(); // Hide the form after successful update
+          $('#display-' + form.attr('action').split('/')[2]).text(form.find('input[type="text"]').attr('name') + ': ' + form.find('input[type="text"]').val());
+          form.parent('.update-form').hide();
         },
-        error: function(xhr, status, error) {
-          alert('Error: ' + xhr.responseJSON.message);
+        error: function(xhr) {
+          alert('Error: ' + xhr.responseText);
         }
       });
     });
+  });
 
 
       // Handling the new user form submission via AJAX

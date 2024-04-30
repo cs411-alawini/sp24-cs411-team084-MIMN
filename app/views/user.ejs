@@ -91,19 +91,20 @@
       </div>
 
       <div id="add-user-container">
-        <h2>POST!</h2>
+        <h2>Post Application</h2>
         <form id="add-user-form">
-          <input type="text" name="user_id" placeholder="User ID" required>
-          <input type="text" name="username" placeholder="Username" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="password" name="password" placeholder="Password" required>
-          <input type="number" name="gre_q" placeholder="GRE Quantitative" required>
-          <input type="number" name="gre_v" placeholder="GRE Verbal" required>
-          <input type="number" name="gre_awa" placeholder="GRE Writing" required>
-          <input type="number" step="0.01" name="gpa" placeholder="GPA" required>
-          <input type="text" name="status" placeholder="Status" required>
-          <input type="text" name="dream_area" placeholder="Dream Area" required>
-          <button type="submit">Add User</button>
+          <input type="text" name="degree" placeholder="Degree">
+          <input type="text" name="term" placeholder="Term">
+          <input type="number" step="0.01" name="gre_q" placeholder="GRE Quantitative">
+          <input type="number" step="0.01" name="gre_v" placeholder="GRE Verbal">
+          <input type="number" step="0.01" name="gre_awa" placeholder="GRE Writing">
+          <input type="number" step="0.01" name="gpa" placeholder="GPA">
+          <input type="text" name="status" placeholder="Status">
+          <input type="number" name="university" placeholder="University" required>
+          <input type="text" name="decision" placeholder="Decision" required>
+          <input type="date" name="date" placeholder="Decision Date">
+          <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+          <button type="submit">POST!</button>
         </form>
       </div>
     </div>

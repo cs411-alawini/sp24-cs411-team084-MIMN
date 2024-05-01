@@ -6,13 +6,12 @@
         <link rel="stylesheet" href="/css/profile.css">
     </head>
     <body>
-        <h1>User Profile</h1>
+        <h3>Accepted Cases of Top 10 Universities in your Favourite Area on Our website</h3>
         <div id="data-container">
             <% if (data && data.length > 0) { %>
                 <% data.forEach(function(item) { %>
                     <div class="data-item">
-                        <h2>University: <%= item.university_name %></h2>
-                        <p>Ranking: <%= item.ranking %></p>
+                        <h4>University: <%= item.name %></h4>
                         <p>Accepted Cases: <%= item.accepted_cases %></p>
                     </div>
                 <% }); %>

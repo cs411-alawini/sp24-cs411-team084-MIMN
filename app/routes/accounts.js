@@ -13,4 +13,7 @@ router.use('/profile', profileRoute);
 const logoutRoute = require('./logout');
 router.use('/logout', logoutRoute);
 
+const deleteRoute = require('./delete');
+router.use('/delete', deleteRoute);
+
 module.exports = router;

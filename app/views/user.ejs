@@ -122,9 +122,14 @@
           <input class="user-input" type="text" name="decision" placeholder="Decision" required>
           <input class="user-input" type="date" name="date" placeholder="Decision Date">
           <input class="user-input" type="hidden" name="user_id" value="<%= userInfo.user_id %>">
-          <button type="submit">POST!</button>
+          <button type="submit">Post</button>
         </form>
       </div>
+
+      <form action="/accounts/delete/" method="POST" id="delete">
+        <input type="hidden" name="user_id" value="<%= userInfo.user_id %>">
+        <button type="submit">Delete</button>
+      </form>
     </div>
   </div>
 

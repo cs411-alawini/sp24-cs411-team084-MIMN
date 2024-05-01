@@ -121,3 +121,9 @@ label {
     flex-direction: column;
     justify-content: center;
 }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

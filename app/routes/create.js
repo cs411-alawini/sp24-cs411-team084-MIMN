@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const crypto = require('crypto');
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 const connection = mysql.createConnection({
     host: '35.232.135.106',
     user: 'root',
@@ -26,35 +26,33 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
   // check if user exists
   const checkIfExists = 'SELECT * FROM user WHERE username = ?';
 
-  try {
-    connection.query(checkIfExists, [username], async (err, result) => {
-      if (err) {
-        console.error('Error during database query:', err);
-        res.status(500).send({ message: 'Error checking username availability', error: err });
-        return;
-      }
-      if (result.length > 0) {
-        res.status(409).send({ message: 'Username already exists' });
-        return;
-      }
+  await connection.beginTransaction();
 
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const sql = 'INSERT INTO user (user_id, username, email, password, dream_area) VALUES (?, ?, ?, ?, ?)';
-      const id = generateUserId(username);
-      connection.query(sql, [id, username, email, hashedPassword, area], function(err, result) {
-        if (err) {
-          console.error('Error during database query:', err);
-          res.status(500).send({ message: 'Error creating user', error: err });
-          return;
+  try {
+    try {
+        const [exists] = await connection.query('SELECT * FROM user WHERE username = ?', [username]);
+        if (exists.length > 0) {
+            await connection.rollback();
+            res.status(409).send({ message: 'Username already exists' });
+            return;
         }
-        if (result.affectedRows === 0) {
-          res.status(400).send({ message: 'User creation failed' });
-        } else {
-          req.session.user = { id: id, username: username };
-          res.redirect('/accounts/profile/');
-        }
-      });
-    });
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const id = generateUserId(username);
+        await connection.query('INSERT INTO user (user_id, username, email, password, dream_area) VALUES (?, ?, ?, ?, ?)', 
+            [id, username, email, hashedPassword, area]);
+
+        // Storing transaction ID or similar flag
+        req.session.transaction = { id: id, inProgress: true };
+        await connection.commit();
+        res.redirect('/accounts/profile/');
+    } catch (err) {
+        await connection.rollback();
+        console.error('Transaction Error:', err);
+        res.status(500).send({ message: 'Transaction failed', error: err });
+    } finally {
+        connection.end();
+    }
   }
   catch (error) {
     console.error('Error in user creation process:', error);

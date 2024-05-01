@@ -15,6 +15,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
+    if (!req.session.transaction || !req.session.transaction.inProgress) {
+        res.status(400).send({ message: 'No active transaction' });
+        return;
+    }
+
     let { gpa, gre_v, gre_q, gre_awa, status } = req.body;
 
     switch (status) {
@@ -40,14 +45,20 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
 
     sql = "UPDATE user SET gpa = ?, gre_q = ?, gre_v = ?, gre_awa = ?, status = ? WHERE user_id = ?";
 
-    connection.query(sql, [gpa, gre_q, gre_v, gre_awa, status, user_id], function(err, result) {
-        if (err) {
-            console.error('Error adding new profile:', err);
-            res.status(500).send({ message: 'Error adding new profile', error: err });
-        } else {
-            res.redirect('/');
-        }
-    });
+    await connection.beginTransaction();
+    try {
+        await connection.query("UPDATE user SET gpa = ?, gre_q = ?, gre_v = ?, gre_awa = ?, status = ? WHERE user_id = ?", 
+            [gpa, gre_q, gre_v, gre_awa, status, user_id]);
+        await connection.commit();
+        res.redirect('/');
+    } catch (err) {
+        await connection.rollback();
+        console.error('Error completing profile update:', err);
+        res.status(500).send({ message: 'Error completing profile update', error: err });
+    } finally {
+        connection.end();
+        delete req.session.transaction;  // Clear the transaction flag
+    }
 });
 
 module.exports = router;

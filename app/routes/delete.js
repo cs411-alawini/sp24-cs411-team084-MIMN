@@ -17,11 +17,16 @@ router.post('/', async (req, res) => {
     var sql = 'DELETE FROM user WHERE user_id = ?';
     connection.query(sql, [user_id], function(err, result) {
         if (err) {
-        console.error('Error during database query:', err);
-        res.status(500).send({ message: 'Error fetching user info', error: err });
+            console.error('Error during database query:', err);
+            res.status(500).send({ message: 'Error fetching user info', error: err });
         return;
         } else {
-        res.redirect('/accounts/login');
+            req.session.destroy((err) => {
+                if (err) {
+                    return res.status(500).send({ message: 'Failed to logout, please try again.' });
+                }
+                res.redirect('/accounts/login/');
+            });
         }
     });
 });

@@ -39,7 +39,7 @@ router.post('/', function(req, res) {
     `"${req.body.status_app}"`  // Ensure the argument is properly quoted if it could contain spaces
   ].join(" ");
 
-  const command = `python3 recommender.py ${args}`;
+  const command = `python3 public/model/recommender.py ${args}`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {

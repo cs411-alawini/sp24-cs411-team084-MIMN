@@ -67,7 +67,7 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
       LIMIT 5;`, [id]);
     
     const [result_2] = await connection.query(`
-      SELECT u.gre_q, u.gre_v, u.gpa, a.decision, a.decision_date
+      SELECT u.gre_q, u.gre_v, u.gre_awa, u.gpa, a.decision, a.decision_date
       FROM user u
       LEFT JOIN application a ON u.user_id = a.user_id
       LEFT JOIN like_university l ON u.user_id = l.user_id

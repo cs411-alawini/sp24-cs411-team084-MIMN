@@ -24,8 +24,9 @@
             <% if (data_2 && data_2.length > 0) { %>
                 <% data_2.forEach(function(item) { %>
                     <div class="data-2-item">
-                        <p>GRE: <%= item.gre_v %>+<%= item.gre_q %>, GPA: <%= item.gpa %>, 
-                            Decision: <%= item.decision %>, Date: <%= item.decision_date %> </p>
+                        <p>GRE: <%= item.gre_v %>+<%= item.gre_q %>+<%= item.gre_awa %>, GPA: <%= item.gpa %>, 
+                            Decision: <%= item.decision %>, 
+                            Date: <%= new Date(item.decision_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> </p>
                     </div>
                 <% }); %>
             <% } else { %>

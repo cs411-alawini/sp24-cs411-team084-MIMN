@@ -4,11 +4,16 @@ const { exec } = require('child_process');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', {
-    title: 'Welcome to Our Recommendation System',
-    recommendations: [],
-    applicants: []
-  });
+  if (req.session.user) {
+    res.render('index', {
+      title: 'Welcome to Our Recommendation System',
+      recommendations: [],
+      applicants: []
+    });
+  } else {
+    res.redirect('/accounts/login/');
+  }
+  
 });
 
 /* POST recommendation request */

@@ -62,7 +62,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
         res.status(500).send({ message: 'Error completing profile update', error: err });
     } finally {
         connection.end();
-        delete req.session.transaction;  // Clear the transaction flag
+        delete req.session.transaction;
     }
 });
 

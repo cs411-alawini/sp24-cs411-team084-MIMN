@@ -6,13 +6,26 @@
         <link rel="stylesheet" href="/css/profile.css">
     </head>
     <body>
-        <h3>Accepted Cases of Top 10 Universities in your Favourite Area on Our website</h3>
-        <div id="data-container">
-            <% if (data && data.length > 0) { %>
-                <% data.forEach(function(item) { %>
-                    <div class="data-item">
+        <h3>Accepted Cases of Top 5 Universities in your Favourite Area on Our Website</h3>
+        <div id="data-1-container">
+            <% if (data_1 && data_1.length > 0) { %>
+                <% data_1.forEach(function(item) { %>
+                    <div class="data-1-item">
                         <h4>University: <%= item.name %></h4>
                         <p>Accepted Cases: <%= item.accepted_cases %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No data available.</p>
+            <% } %>
+        </div>
+        <h3>Profiles of Users Who Applied to Your Dream School</h3>
+        <div id="data-2-container">
+            <% if (data_2 && data_2.length > 0) { %>
+                <% data_2.forEach(function(item) { %>
+                    <div class="data-2-item">
+                        <p>GRE: <%= item.gre_v %>+<%= item.gre_q %>, GPA: <%= item.gpa %>, 
+                            Decision: <%= item.decision %>, Date: <%= item.decision_date %> </p>
                     </div>
                 <% }); %>
             <% } else { %>
@@ -22,7 +35,7 @@
         <div class="container mt-4">
             <div class="card">
               <div class="card-body">
-                <h2>Information</h2>
+                <h2>Complete Your Profile to Unlock Customized Data</h2>
                 <form action="/create/profile/" method="POST">
                     <div class="form-group">
                         <div class="label">GPA</div> <input type="number" step="0.01" name="gpa" class="input"/><br>

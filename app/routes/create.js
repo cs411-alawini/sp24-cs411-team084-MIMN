@@ -23,7 +23,7 @@ router.get('/account', (req, res) => {
 });
 
 router.post('/account', express.urlencoded({ extended: true }), async (req, res) => {
-  const { username, email, password, area } = req.body;
+  const { username, email, password, area, university } = req.body;
 
   const connection = await pool.getConnection();
 
@@ -42,9 +42,14 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
     await connection.query('INSERT INTO user (user_id, username, email, password, dream_area) VALUES (?, ?, ?, ?, ?)', 
         [id, username, email, hashedPassword, area]);
 
+    await connection.query('INSERT INTO like_university (user_id, liked_university) VALUES (?, ?)', 
+        [id, university]);
+    
+    
+
     req.session.transaction = { id: id, inProgress: true };
 
-    const [results] = await connection.query(`
+    const [results_1] = await connection.query(`
       SELECT 
         university.name, 
         tmp.accepted_cases
@@ -59,12 +64,26 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
       WHERE decision = 'Accepted'
       GROUP BY university) tmp
       ON tmp.university = r.university_id
-      WHERE u.user_id = ? AND r.ranking  IS NOT NULL 
+      WHERE u.user_id = ? AND r.ranking IS NOT NULL 
       ORDER BY r.ranking
-      LIMIT 10;`, [id]);
+      LIMIT 5;`, [id]);
+    
+    const [result_2] = await connection.query(`
+      SELECT u.gre_q, u.gre_v, u.gpa, a.decision, a.decision_date
+      FROM user u
+      LEFT JOIN application a ON u.user_id = a.user_id
+      LEFT JOIN like_university l ON u.user_id = l.user_id
+      WHERE u.gre_q IS NOT NULL 
+        AND u.gre_v IS NOT NULL 
+        AND u.gpa IS NOT NULL 
+        AND a.decision != 'Others'
+        AND u.user_id = ?
+      ORDER BY a.decision_date DESC
+      LIMIT 5;`, [id])
+
     await connection.commit();
 
-    res.render('profile', { title: 'Complete Profile', data: results });
+    res.render('profile', { title: 'Complete Profile', data_1: results_1, data_2: result_2 });
   } catch (err) {
       await connection.rollback();
       console.error('Transaction Error:', err);
@@ -120,6 +139,8 @@ router.post('/profile', express.urlencoded({ extended: true }), async (req, res)
 } catch (err) {
     await connection.rollback();
     await connection.query("DELETE FROM user WHERE user_id = ?", [user_id]);
+    await connection.query("DELETE FROM like_university WHERE user_id = ?", [user_id]);
+
     console.error('Error completing profile update:', err);
     res.status(500).send({ message: 'Error completing profile update', error: err });
 } finally {

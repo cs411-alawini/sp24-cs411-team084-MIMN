@@ -103,6 +103,7 @@ router.post('/profile', express.urlencoded({ extended: true }), async (req, res)
     res.redirect('/');
 } catch (err) {
     await connection.rollback();
+    await connection.query("DELETE FROM user WHERE user_id = ?", [user_id]);
     console.error('Error completing profile update:', err);
     res.status(500).send({ message: 'Error completing profile update', error: err });
 } finally {

@@ -44,7 +44,12 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
     gre_awa = gre_awa ? parseInt(gre_awa, 10) : null;
 
     sql = "UPDATE user SET gpa = ?, gre_q = ?, gre_v = ?, gre_awa = ?, status = ? WHERE user_id = ?";
-
+    const connection = await mysql.createConnection({
+        host: '35.232.135.106',
+        user: 'root',
+        password: 'UIUC-cs411-MIMN',
+        database: 'COLLEGE_DB'
+    });
     await connection.beginTransaction();
     try {
         await connection.query("UPDATE user SET gpa = ?, gre_q = ?, gre_v = ?, gre_awa = ?, status = ? WHERE user_id = ?", 

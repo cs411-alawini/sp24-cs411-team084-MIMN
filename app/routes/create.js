@@ -24,7 +24,12 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
   const { username, email, password, area } = req.body;
 
   // check if user exists
-  const checkIfExists = 'SELECT * FROM user WHERE username = ?';
+  const connection = await mysql.createConnection({
+    host: '35.232.135.106',
+    user: 'root',
+    password: 'UIUC-cs411-MIMN',
+    database: 'COLLEGE_DB'
+  });
 
   await connection.beginTransaction();
 

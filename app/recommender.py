@@ -1,13 +1,54 @@
 import pandas as pd
 import joblib
 import sys
-
+from sqlalchemy import create_engine, text
 
 # Load the model and other components
 model = joblib.load('trained_model.joblib')
 le = joblib.load('label_encoder.joblib')
 scaler = joblib.load('scaler.joblib')
 university_df = joblib.load('university_df.joblib')
+
+# Setup the SQLAlchemy engine
+engine = create_engine('mysql+pymysql://root:UIUC-cs411-MIMN@35.232.135.106/COLLEGE_DB')
+
+def call_stored_procedure(univ1, univ2, univ3):
+    with engine.connect() as connection:
+        # Access the raw DBAPI connection
+        raw_conn = connection.connection
+        cursor = raw_conn.cursor()
+        cursor.callproc("GetUniversityApplicants", [univ1, univ2, univ3])
+        
+        # Process each result set
+        # more_results = True
+        # while more_results:
+        #     results = cursor.fetchall()
+        #     if results:
+        #         print("Results:")
+        #         for row in results:
+        #             print(row)
+            
+        #     # Attempt to move to the next result set
+        #     more_results = cursor.nextset()
+        
+        results = cursor.fetchall()
+        #print("\nQuery 1: Average Scores and Ranking")
+        for row in results:
+            print(f"University: {row[0]}, Ranking: {row[1]}, "
+                  f"Avg GPA: {float(row[2]):.1f}, Avg GRE Q: {float(row[3]):.1f}, "
+                  f"Avg GRE V: {float(row[4]):.1f}, Avg GRE AWA: {float(row[5]):.1f}")
+
+        cursor.nextset()
+
+        results = cursor.fetchall()
+        #print("\nQuery 2: Acceptance Rates")
+        for row in results:
+            print(f"University: {row[0]}, Total Applicants: {row[1]}, "
+                  f"Acceptance Rate: {float(row[2]):.2f}%")
+
+        cursor.close()
+
+
 
 def recommend_schools(gre_quant, gre_verbal, gre_w, gpa, status):
 
@@ -28,7 +69,8 @@ def recommend_schools(gre_quant, gre_verbal, gre_w, gpa, status):
     top_school_ids = model.classes_[top_school_indices]
     top_school_names = university_df[university_df['university_id'].isin(top_school_ids)]['name'].values
 
-    return top_school_names
+    return top_school_names, top_school_ids
+
 
 if __name__ == "__main__":
     gre_quant = float(sys.argv[1])
@@ -38,5 +80,8 @@ if __name__ == "__main__":
     status = sys.argv[5]
 
     print(f"{gpa}, {gre_quant}, {gre_verbal}, {gre_w}, {status}")
-    recommendations = recommend_schools(gre_quant, gre_verbal, gre_w, gpa, status)
-    print(", ".join(recommendations))  # Output as a simple comma-separated string
+    recommendations, top_school_ids = recommend_schools(gre_quant, gre_verbal, gre_w, gpa, status)
+    print(", ".join(recommendations))  # Outputs recommendations
+
+    print("---Applicants---")
+    call_stored_procedure(top_school_ids[0], top_school_ids[1], top_school_ids[2])

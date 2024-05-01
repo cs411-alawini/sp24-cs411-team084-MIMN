@@ -95,21 +95,22 @@
                 <option value="Unknown">Unknown</option>
              </select>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Match</button>
         </form>
-        <!-- Button to Load Attendance -->
-        <button type="button" class="btn btn-info mt-3" id="loadAttendanceBtn" data-toggle="modal" data-target="#viewAttendanceModal">
-          Match
-        </button>
-        <div id="attendanceBody">
-            <!-- Attendance rows will be inserted here -->
-        </div>
         <!-- Section to display recommendations -->
         <% if (recommendations && recommendations.length) { %>
           <div class="recommendations">
               <h3>Recommended Schools:</h3>
               <p><%= recommendations %></p>
           </div>
+          <% if (applicants && applicants.length) { %>
+            <div class="applicants">
+              <h3>More Information:</h3>
+              <% applicants.forEach(function(applicant) { %>
+                <p><%= applicant %></p>
+              <% }) %>
+            </div>
+          <% } %>
         <% } %>
       </div>
     </div>

@@ -55,18 +55,13 @@ app.use('/user', userRoutes);
 const postRoutes = require('./routes/post');
 app.use('/post', postRoutes);
 
-app.get('/', function(req, res) {
+app.get(['/', '/index'], function(req, res) {
   if (req.session.user) {
-    res.render('index', { title: 'Index', user: req.session.user });
+    res.render('index', { title: 'Index', user: req.session.user, recommendations: [] });
   } else {
     res.redirect('/accounts/login');
   }
 });
-
-app.get('/index', function(req, res) {
-  res.redirect('/');
-});
-
 
 const recommendationRouter = require('./routes/index'); // Ensure the path is correct
 app.use('/mark', recommendationRouter);

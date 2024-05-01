@@ -19,18 +19,6 @@ def call_stored_procedure(univ1, univ2, univ3):
         cursor = raw_conn.cursor()
         cursor.callproc("GetUniversityApplicants", [univ1, univ2, univ3])
         
-        # Process each result set
-        # more_results = True
-        # while more_results:
-        #     results = cursor.fetchall()
-        #     if results:
-        #         print("Results:")
-        #         for row in results:
-        #             print(row)
-            
-        #     # Attempt to move to the next result set
-        #     more_results = cursor.nextset()
-        
         results = cursor.fetchall()
         #print("\nQuery 1: Average Scores and Ranking")
         for row in results:

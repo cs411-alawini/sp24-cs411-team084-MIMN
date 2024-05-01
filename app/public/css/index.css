@@ -62,67 +62,52 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding-top: 5%;
+    text-align: center;
 }
 
-#main-container {
-    width: 300px;
-    background-color: white;
-    padding: 20px;
+.card {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-}
-
-input[type=text], input[type=password], input[type=submit] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
     border-radius: 20px;
-    width: 75%;
 }
 
-input[type=submit] {
+.card h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-primary, .btn-info {
     background-color: #4CAF50;
-    color: white;
     border: none;
-    cursor: pointer;
-    font-size: 16px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    margin-right: 5px;
 }
 
-input[type=submit]:hover {
+.btn-primary:hover, .btn-info:hover {
     background-color: #45a049;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 700;
+.btn-primary {
+    display: block;
+    width: fit-content;
+    margin: auto;
 }
 
-a:hover {
-    text-decoration: underline;
+.btn-info {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
 }
 
-::placeholder {
-    color: #666;
-    opacity: 1;
-}
-
-input:-ms-input-placeholder {
-    color: #666;
-}
-
-input::-ms-input-placeholder {
+label {
     color: #666;
 }

@@ -5,66 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/index.css">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f7f7f7;
-        padding-top: 5%;
-        text-align: center;
-    }
-
-    .card {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        align-items: center;
-        border-radius: 20px;
-    }
-
-    .card h2 {
-        color: #333;
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-
-    .form-control {
-        border-radius: 20px;
-        margin-bottom: 20px;
-    }
-
-    .btn-primary, .btn-info {
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 20px;
-        padding: 10px 20px;
-        color: white;
-        margin-right: 5px;
-    }
-
-    .btn-primary:hover, .btn-info:hover {
-        background-color: #45a049;
-    }
-
-    .btn-primary {
-        display: block;
-        width: fit-content;
-        margin: auto;
-    }
-
-    .btn-info {
-        display: block;
-        width: fit-content;
-        margin: 20px auto;
-    }
-    
-    label {
-        color: #666;
-    }
-  </style>
 </head>
 
 <body>
+  <nav id="navbar">
+    <div id="navbar-top">
+        <div id="navbar-left">
+            <a href="/">
+                <img class="insta-icon" src="/static/images/logo-1.png" alt="insta icon">
+            </a>
+        </div>
+        <div id="navbar-right">
+            <a href="/users/" class="navbar-right-text">Profile</a>
+            <div id="vertical-line-right"></div>
+            <a href="/account/logout/" class="navbar-right-text">Logout</a>
+        </div>
+    </div>
+    <hr id="navbar-bottom">
+  </nav>
+
   <div class="container mt-4">
     <div class="card">
       <div class="card-body">

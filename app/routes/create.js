@@ -62,7 +62,7 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
       WHERE u.user_id = ? AND r.ranking  IS NOT NULL 
       ORDER BY r.ranking
       LIMIT 10;`, [id]);
-
+    console.log(results);
     await connection.commit();
 
     res.render('profile', { title: 'Complete Profile', data: results });

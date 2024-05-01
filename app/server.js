@@ -67,6 +67,10 @@ app.get('/index', function(req, res) {
   res.redirect('/');
 });
 
+
+const recommendationRouter = require('./routes/index'); // Ensure the path is correct
+app.use('/mark', recommendationRouter);
+
 app.listen(80, function () {
     console.log('Node app is running on port 80');
 });

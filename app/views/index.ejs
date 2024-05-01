@@ -8,54 +8,111 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        padding-top: 5%;
+        text-align: center;
+    }
+
+    .card {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        border-radius: 20px;
+    }
+
+    .card h2 {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary, .btn-info {
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        color: white;
+        margin-right: 5px;
+    }
+
+    .btn-primary:hover, .btn-info:hover {
+        background-color: #45a049;
+    }
+
+    .btn-primary {
+        display: block;
+        width: fit-content;
+        margin: auto;
+    }
+
+    .btn-info {
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+    }
+    
+    label {
+        color: #666;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container mt-4">
     <div class="card">
       <div class="card-body">
-        <h2>Please mark your attendance below</h2>
+        <h2>Please enter your Information Below</h2>
         <form action="mark" method="POST">
           <div class="form-group">
-            <label for="netid">Net ID</label>
-            <input type="text" class="form-control col-lg-9" id="netid" placeholder="Enter Net ID" name="netid">
+            <label for="gpa">GPA</label>
+            <input type="text" class="form-control col-lg-9" id="gpa" name="gpa" placeholder="Enter your GPA" required>
+          </div>
+          <div class="form-group">
+            <label for="gre_v">GRE Verbal</label>
+            <input type="text" class="form-control col-lg-9" id="gre_v" name="gre_v" placeholder="Enter your GRE Verbal score" required>
+          </div>
+          <div class="form-group">
+            <label for="gre_q">GRE Quantitative</label>
+            <input type="text" class="form-control col-lg-9" id="gre_q" name="gre_q" placeholder="Enter your GRE Quantitative score" required>
+          </div>
+          <div class="form-group">
+            <label for="gre_awa">GRE Writing</label>
+            <input type="text" class="form-control col-lg-9" id="gre_awa" name="gre_awa" placeholder="Enter your GRE Writing score" required>
+          </div>
+          <div class="form-group">
+            <label for="status_app">Status</label>
+            <select class="form-control col-lg-9" id="status_app" name="status_app">
+                <option value="International without US degree" selected>International without US degree</option>
+                <option value="International with US degree">International with US degree</option>
+                <option value="American">American</option>
+                <option value="Unknown">Unknown</option>
+             </select>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <!-- Button to Load Attendance -->
         <button type="button" class="btn btn-info mt-3" id="loadAttendanceBtn" data-toggle="modal" data-target="#viewAttendanceModal">
-          View Attendance
+          Match
         </button>
-	<form action="/accounts/logout/" method="post">
-       	    <input type="submit" value="Logout" class="btn btn-info mt-3" id="loadAttendanceBtn"/>
-        </form?
-	  <div id="attendanceBody">
+        <div id="attendanceBody">
             <!-- Attendance rows will be inserted here -->
+        </div>
+        <!-- Section to display recommendations -->
+        <% if (recommendations && recommendations.length) { %>
+          <div class="recommendations">
+              <h3>Recommended Schools:</h3>
+              <p><%= recommendations %></p>
           </div>
+        <% } %>
       </div>
     </div>
   </div>
-
-  <script>
-$(document).ready(function() {
-  $('#loadAttendanceBtn').click(function() {
-    $.ajax({
-      url: '/api/attendance',
-      method: 'GET',
-      success: function(data) {
-        console.log(data);
-        var htmlContent = '';
-        data.forEach(function(item) {
-          htmlContent += '<p>Name: ' + item.name + '</p>';
-        });
-        $('#attendanceBody').html(htmlContent);
-      },
-      error: function() {
-        alert('Failed to load attendance data.');
-      }
-    });
-  });
-});
-</script>
 </body>
 </html>

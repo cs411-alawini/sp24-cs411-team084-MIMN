@@ -43,8 +43,29 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
         [id, username, email, hashedPassword, area]);
 
     req.session.transaction = { id: id, inProgress: true };
+
+    const [results] = await connection.query(`
+      SELECT university.name, 
+        a.name,
+        tmp.accepted_cases
+      FROM user u
+      LEFT JOIN area a ON u.dream_area = a.area_id
+      LEFT JOIN ranking r ON r.area_id = u.dream_area
+      LEFT JOIN university  ON university.university_id = r.university_id
+      LEFT JOIN 
+      (SELECT university, 
+        COUNT(*) AS accepted_cases
+      FROM application
+      WHERE decision = 'Accepted'
+      GROUP BY university) tmp
+      ON tmp.university = r.university_id
+      WHERE u.user_id = ? AND r.ranking  IS NOT NULL 
+      ORDER BY r.ranking
+      LIMIT 10;`, [id]);
+
     await connection.commit();
-    res.redirect('/create/profile');
+
+    res.render('profile', { title: 'Complete Profile', data: results });
   } catch (err) {
       await connection.rollback();
       console.error('Transaction Error:', err);
@@ -60,10 +81,6 @@ function generateUserId(username) {
   const hash = crypto.createHash('sha256').update(username + now + random).digest('hex');
   return hash.substring(0, 10);
 }
-
-router.get('/profile', (req, res) => {
-  res.render('profile', { title: 'Account Create' });
-});
 
 router.post('/profile', express.urlencoded({ extended: true }), async (req, res) => {
   if (!req.session.transaction || !req.session.transaction.inProgress) {

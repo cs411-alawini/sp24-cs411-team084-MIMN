@@ -6,6 +6,21 @@
         <link rel="stylesheet" href="/css/profile.css">
     </head>
     <body>
+        <h1>User Profile</h1>
+        <div id="data-container">
+            <% if (data && data.length > 0) { %>
+                <% data.forEach(function(item) { %>
+                    <div class="data-item">
+                        <h2>University: <%= item.university_name %></h2>
+                        <p>Area: <%= item.area_name %></p>
+                        <p>Ranking: <%= item.ranking %></p>
+                        <p>Accepted Cases: <%= item.accepted_cases %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No data available.</p>
+            <% } %>
+        </div>
         <div class="container mt-4">
             <div class="card">
               <div class="card-body">

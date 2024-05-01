@@ -73,6 +73,7 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
       LEFT JOIN like_university l ON u.user_id = l.user_id
       WHERE u.gre_q IS NOT NULL
         AND u.gre_v IS NOT NULL
+        AND u.gre_awa IS NOT NULL
         AND u.gpa IS NOT NULL
         AND a.decision != 'Others'
         AND l.liked_university =

@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const accountRoutes = require('./routes/accounts');
 app.use('/accounts', accountRoutes);
 
-const userRoutes = require('./routes/users');
+const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
 
 const postRoutes = require('./routes/post');
@@ -64,7 +64,7 @@ app.get(['/', '/index'], function(req, res) {
 });
 
 const recommendationRouter = require('./routes/index'); // Ensure the path is correct
-app.use('/mark', recommendationRouter);
+app.use('/match', recommendationRouter);
 
 app.listen(80, function () {
     console.log('Node app is running on port 80');

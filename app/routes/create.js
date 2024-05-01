@@ -44,8 +44,6 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
 
     await connection.query('INSERT INTO like_university (user_id, liked_university) VALUES (?, ?)', 
         [id, university]);
-    
-    
 
     req.session.transaction = { id: id, inProgress: true };
 
@@ -73,13 +71,15 @@ router.post('/account', express.urlencoded({ extended: true }), async (req, res)
       FROM user u
       LEFT JOIN application a ON u.user_id = a.user_id
       LEFT JOIN like_university l ON u.user_id = l.user_id
-      WHERE u.gre_q IS NOT NULL 
-        AND u.gre_v IS NOT NULL 
-        AND u.gpa IS NOT NULL 
+      WHERE u.gre_q IS NOT NULL
+        AND u.gre_v IS NOT NULL
+        AND u.gpa IS NOT NULL
         AND a.decision != 'Others'
-        AND u.user_id = ?
+        AND l.liked_university =
+        (SELECT liked_university FROM like_university WHERE user_id = ?)
       ORDER BY a.decision_date DESC
-      LIMIT 5;`, [id])
+      LIMIT 5;
+    `, [id])
 
     await connection.commit();
 

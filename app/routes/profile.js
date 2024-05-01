@@ -36,7 +36,7 @@ router.post('/', express.urlencoded({ extended: true }), async (req, res) => {
             status = "Unknown";
     }
 
-    const user_id = req.session.user.id;
+    const user_id = req.session.transaction.id;
 
     gpa = gpa ? parseFloat(gpa) : null;
     gre_q = gre_q ? parseInt(gre_q, 10) : null;

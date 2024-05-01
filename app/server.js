@@ -49,6 +49,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const accountRoutes = require('./routes/accounts');
 app.use('/accounts', accountRoutes);
 
+const createRoutes = require('./routes/create');
+app.use('/create', accountRoutes);
+
 const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
 

@@ -20,9 +20,9 @@
             </a>
         </div>
         <div id="navbar-right">
-            <a href="/users/" class="navbar-right-text">Profile</a>
+            <a href="/user/" class="navbar-right-text">Profile</a>
             <div id="vertical-line-right"></div>
-            <a href="/account/logout/" class="navbar-right-text">Logout</a>
+            <a href="/accounts/logout/" class="navbar-right-text">Logout</a>
         </div>
     </div>
     <hr id="navbar-bottom">
@@ -32,7 +32,7 @@
     <div class="card">
       <div class="card-body">
         <h2>Please enter your Information Below</h2>
-        <form action="mark" method="POST">
+        <form action="mark" method="POST" id="input-form">
           <div class="form-group">
             <label for="gpa">GPA</label>
             <input type="text" class="form-control col-lg-9" id="gpa" name="gpa" placeholder="Enter your GPA" required>

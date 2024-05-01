@@ -111,3 +111,13 @@ body {
 label {
     color: #666;
 }
+
+.card-body {
+    width: 50%;
+}
+
+#input-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
